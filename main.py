@@ -1,9 +1,10 @@
 import os
+import random
+
+list_days = random.sample(range(1, 500), 350) 
 
 def make_commit(days: int):
-    if days < 1:
-        return os.system("git push")
-    else:
+    if days in list_days:
         dates = f'{days} days ago'
 
         with open('data.txt', 'a') as file:
@@ -15,4 +16,9 @@ def make_commit(days: int):
         os.system('git commit --date="'+dates+'" -m "first commit"')
 
         return days * make_commit(days - 1)
-make_commit(10)
+
+    else:
+        return os.system("git push")
+        
+        
+make_commit(500)
